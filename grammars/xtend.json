@@ -1154,12 +1154,16 @@
         },
         {
           "applyEndPatternLast": 1,
-          "begin": "\\«\\w",
-          "end": "(?=»)",
+          "begin": "\\«",
+          "end": "\\»",
           "name": "variable.other.interpolated.xtend",
           "patterns": [
             {
               "include": "#method-call"
+            },
+            {
+              "match": "\\b(IF|ELSE|FOR|ELSEIF|ENDFOR|ENDIF)\\b",
+              "name": "keyword.operator.logical.xtend"
             },
             {
               "match": "\\w",
