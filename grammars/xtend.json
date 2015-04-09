@@ -1155,7 +1155,7 @@
         {
           "applyEndPatternLast": 1,
           "begin": "\\«\\w",
-          "end": "(?=»\\W)",
+          "end": "(?=»)",
           "name": "variable.other.interpolated.xtend",
           "patterns": [
             {
