@@ -1077,7 +1077,7 @@
           "name": "storage.modifier.static.xtend"
         },
         {
-          "match": "\\b(final)\\b",
+          "match": "\\b(final|val)\\b",
           "name": "storage.modifier.final.xtend"
         },
         {
