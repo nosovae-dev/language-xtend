@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "description": "Xtend language support in Atom",
-  "repository": "",
+  "repository": "https://github.com/nosovae-dev/language-xtend",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0 <2.0.0"
   },
   "dependencies": {},
   "bugs": {
-    "url": "/issues"
+    "url": "https://github.com/nosovae-dev/language-xtend/issues"
   }
 }

@@ -1,0 +1,1361 @@
+{
+  "fileTypes": [
+    "xtend"
+  ],
+  "foldingStartMarker": "(\\{\\s*$|^\\s*// \\{\\{\\{)",
+  "foldingStopMarker": "^\\s*(\\}|// \\}\\}\\}$)",
+  "name": "Xtend",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.xtend"
+        }
+      },
+      "match": "^(#!).+$\\n",
+      "name": "comment.line.hashbang.xtend"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.other.package.xtend"
+        },
+        "2": {
+          "name": "storage.modifier.package.xtend"
+        },
+        "3": {
+          "name": "punctuation.terminator.xtend"
+        }
+      },
+      "match": "^\\s*(package)\\b(?:\\s*([^ ;$]+)\\s*(;)?)?",
+      "name": "meta.package.xtend"
+    },
+    {
+      "begin": "(import static)\\b\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.import.static.xtend"
+        }
+      },
+      "captures": {
+        "1": {
+          "name": "keyword.other.import.xtend"
+        },
+        "2": {
+          "name": "storage.modifier.import.xtend"
+        },
+        "3": {
+          "name": "punctuation.terminator.xtend"
+        }
+      },
+      "contentName": "storage.modifier.import.xtend",
+      "end": "\\s*(?:$|(?=%>)(;))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.terminator.xtend"
+        }
+      },
+      "name": "meta.import.xtend",
+      "patterns": [
+        {
+          "match": "\\.",
+          "name": "punctuation.separator.xtend"
+        },
+        {
+          "match": "\\s",
+          "name": "invalid.illegal.character_not_allowed_here.xtend"
+        }
+      ]
+    },
+    {
+      "begin": "(import)\\b\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.import.xtend"
+        }
+      },
+      "captures": {
+        "1": {
+          "name": "keyword.other.import.xtend"
+        },
+        "2": {
+          "name": "storage.modifier.import.xtend"
+        },
+        "3": {
+          "name": "punctuation.terminator.xtend"
+        }
+      },
+      "contentName": "storage.modifier.import.xtend",
+      "end": "\\s*(?:$|(?=%>)|(;))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.terminator.xtend"
+        }
+      },
+      "name": "meta.import.xtend",
+      "patterns": [
+        {
+          "match": "\\.",
+          "name": "punctuation.separator.xtend"
+        },
+        {
+          "match": "\\s",
+          "name": "invalid.illegal.character_not_allowed_here.xtend"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.other.import.xtend"
+        },
+        "2": {
+          "name": "keyword.other.import.static.xtend"
+        },
+        "3": {
+          "name": "storage.modifier.import.xtend"
+        },
+        "4": {
+          "name": "punctuation.terminator.xtend"
+        }
+      },
+      "match": "^\\s*(import)(?:\\s+(static)\\s+)\\b(?:\\s*([^ ;$]+)\\s*(;)?)?",
+      "name": "meta.import.xtend"
+    },
+    {
+      "include": "#xtend"
+    }
+  ],
+  "repository": {
+    "annotations": {
+      "patterns": [
+        {
+          "begin": "(?<!\\.)(@[^ (]+)(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.annotation.xtend"
+            },
+            "2": {
+              "name": "punctuation.definition.annotation-arguments.begin.xtend"
+            }
+          },
+          "end": "(\\))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.annotation-arguments.end.xtend"
+            }
+          },
+          "name": "meta.declaration.annotation.xtend",
+          "patterns": [
+            {
+              "captures": {
+                "1": {
+                  "name": "constant.other.key.xtend"
+                },
+                "2": {
+                  "name": "keyword.operator.assignment.xtend"
+                }
+              },
+              "match": "(\\w*)\\s*(=)"
+            },
+            {
+              "include": "#values"
+            },
+            {
+              "match": ",",
+              "name": "punctuation.definition.seperator.xtend"
+            }
+          ]
+        },
+        {
+          "match": "(?<!\\.)@\\S+",
+          "name": "storage.type.annotation.xtend"
+        }
+      ]
+    },
+    "anonymous-classes-and-new": {
+      "begin": "\\bnew\\b",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.control.new.xtend"
+        }
+      },
+      "end": "(?<=\\)|\\])(?!\\s*{)|(?<=})|(?=[;])|$",
+      "patterns": [
+        {
+          "begin": "(\\w+)\\s*(?=\\[)",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.type.xtend"
+            }
+          },
+          "end": "}|(?=\\s*(?:,|;|\\)))|$",
+          "patterns": [
+            {
+              "begin": "\\[",
+              "end": "\\]",
+              "patterns": [
+                {
+                  "include": "#xtend"
+                }
+              ]
+            },
+            {
+              "begin": "{",
+              "end": "(?=})",
+              "patterns": [
+                {
+                  "include": "#xtend"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(?=\\w.*\\(?)",
+          "end": "(?<=\\))|$",
+          "patterns": [
+            {
+              "include": "#object-types"
+            },
+            {
+              "begin": "\\(",
+              "beginCaptures": {
+                "1": {
+                  "name": "storage.type.xtend"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "#xtend"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "{",
+          "end": "}",
+          "name": "meta.inner-class.xtend",
+          "patterns": [
+            {
+              "include": "#class-body"
+            }
+          ]
+        }
+      ]
+    },
+    "braces": {
+      "begin": "\\{",
+      "end": "\\}",
+      "patterns": [
+        {
+          "include": "#xtend-code"
+        }
+      ]
+    },
+    "class": {
+      "begin": "(?=\\w?[\\w\\s]*(?:class|trait|(?:@)?interface|enum)\\s+\\w+)",
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.class.end.xtend"
+        }
+      },
+      "name": "meta.definition.class.xtend",
+      "patterns": [
+        {
+          "include": "#storage-modifiers"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "storage.modifier.xtend"
+            },
+            "2": {
+              "name": "entity.name.type.class.xtend"
+            }
+          },
+          "match": "(class|trait|(?:@)?interface|enum)\\s+(\\w+)",
+          "name": "meta.class.identifier.xtend"
+        },
+        {
+          "begin": "extends",
+          "beginCaptures": {
+            "0": {
+              "name": "storage.modifier.extends.xtend"
+            }
+          },
+          "end": "(?={|implements)",
+          "name": "meta.definition.class.inherited.classes.xtend",
+          "patterns": [
+            {
+              "include": "#object-types-inherited"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        },
+        {
+          "begin": "(implements)\\s",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.modifier.implements.xtend"
+            }
+          },
+          "end": "(?=\\s*extends|\\{)",
+          "name": "meta.definition.class.implemented.interfaces.xtend",
+          "patterns": [
+            {
+              "include": "#object-types-inherited"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        },
+        {
+          "begin": "{",
+          "end": "(?=})",
+          "name": "meta.class.body.xtend",
+          "patterns": [
+            {
+              "include": "#class-body"
+            }
+          ]
+        }
+      ]
+    },
+    "class-body": {
+      "patterns": [
+        {
+          "include": "#enum-values"
+        },
+        {
+          "include": "#constructors"
+        },
+        {
+          "include": "#xtend"
+        }
+      ]
+    },
+    "closures": {
+      "begin": "\\{(?=.*?->)",
+      "end": "\\}",
+      "patterns": [
+        {
+          "begin": "(?<=\\{)(?=[^\\}]*?->)",
+          "end": "->",
+          "endCaptures": {
+            "0": {
+              "name": "keyword.operator.xtend"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "(?!->)",
+              "end": "(?=->)",
+              "name": "meta.closure.parameters.xtend",
+              "patterns": [
+                {
+                  "begin": "(?!,|->)",
+                  "end": "(?=,|->)",
+                  "name": "meta.closure.parameter.xtend",
+                  "patterns": [
+                    {
+                      "begin": "=",
+                      "beginCaptures": {
+                        "0": {
+                          "name": "keyword.operator.assignment.xtend"
+                        }
+                      },
+                      "end": "(?=,|->)",
+                      "name": "meta.parameter.default.xtend",
+                      "patterns": [
+                        {
+                          "include": "#xtend-code"
+                        }
+                      ]
+                    },
+                    {
+                      "include": "#parameters"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(?=[^}])",
+          "end": "(?=\\})",
+          "patterns": [
+            {
+              "include": "#xtend-code"
+            }
+          ]
+        }
+      ]
+    },
+    "comment-block": {
+      "begin": "/\\*",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.xtend"
+        }
+      },
+      "end": "\\*/",
+      "name": "comment.block.xtend"
+    },
+    "comments": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.xtend"
+            }
+          },
+          "match": "/\\*\\*/",
+          "name": "comment.block.empty.xtend"
+        },
+        {
+          "include": "text.html.javadoc"
+        },
+        {
+          "include": "#comment-block"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.xtend"
+            }
+          },
+          "match": "(//).*$\\n?",
+          "name": "comment.line.double-slash.xtend"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b([A-Z][A-Z0-9_]+)\\b",
+          "name": "constant.other.xtend"
+        },
+        {
+          "match": "\\b(true|false|null)\\b",
+          "name": "constant.language.xtend"
+        }
+      ]
+    },
+    "constructors": {
+      "applyEndPatternLast": 1,
+      "begin": "(?<=;|^)(?=\\s*(?:(?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final)\\s+)*[A-Z]\\w*\\()",
+      "end": "}",
+      "patterns": [
+        {
+          "include": "#method-content"
+        }
+      ]
+    },
+    "enum-values": {
+      "patterns": [
+        {
+          "begin": "(?<=;|^)\\s*\\b([A-Z0-9_]+)(?=\\s*(?:,|;|}|\\(|$))",
+          "beginCaptures": {
+            "1": {
+              "name": "constant.enum.name.xtend"
+            }
+          },
+          "end": ",|;|(?=})|^(?!\\s*\\w+\\s*(?:,|$))",
+          "patterns": [
+            {
+              "begin": "\\(",
+              "end": "\\)",
+              "name": "meta.enum.value.xtend",
+              "patterns": [
+                {
+                  "match": ",",
+                  "name": "punctuation.definition.seperator.parameter.xtend"
+                },
+                {
+                  "include": "#xtend-code"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "xtend": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#class"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#methods"
+        },
+        {
+          "include": "#annotations"
+        },
+        {
+          "include": "#xtend-code"
+        }
+      ]
+    },
+    "xtend-code": {
+      "patterns": [
+        {
+          "include": "#xtend-code-minus-map-keys"
+        },
+        {
+          "include": "#map-keys"
+        }
+      ]
+    },
+    "xtend-code-minus-map-keys": {
+      "comment": "In some situations, maps can't be declared without enclosing []'s, \n\t\t\t\ttherefore we create a collection of everything but that",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#annotations"
+        },
+        {
+          "include": "#support-functions"
+        },
+        {
+          "include": "#keyword-language"
+        },
+        {
+          "include": "#values"
+        },
+        {
+          "include": "#anonymous-classes-and-new"
+        },
+        {
+          "include": "#keyword-operator"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#storage-modifiers"
+        },
+        {
+          "include": "#parens"
+        },
+        {
+          "include": "#closures"
+        },
+        {
+          "include": "#braces"
+        }
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "include": "#keyword-operator"
+        },
+        {
+          "include": "#keyword-language"
+        }
+      ]
+    },
+    "keyword-language": {
+      "patterns": [
+        {
+          "match": "\\b(try|catch|finally|throw)\\b",
+          "name": "keyword.control.exception.xtend"
+        },
+        {
+          "match": "\\b((?<!\\.)(?:return|break|continue|default|do|while|for|switch|if|else))\\b",
+          "name": "keyword.control.xtend"
+        },
+        {
+          "begin": "\\bcase\\b",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.control.xtend"
+            }
+          },
+          "end": ":",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.case-terminator.xtend"
+            }
+          },
+          "name": "meta.case.xtend",
+          "patterns": [
+            {
+              "include": "#xtend-code-minus-map-keys"
+            }
+          ]
+        },
+        {
+          "begin": "\\b(assert)\\s",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.assert.xtend"
+            }
+          },
+          "end": "$|;|}",
+          "name": "meta.declaration.assertion.xtend",
+          "patterns": [
+            {
+              "match": ":",
+              "name": "keyword.operator.assert.expression-seperator.xtend"
+            },
+            {
+              "include": "#xtend-code-minus-map-keys"
+            }
+          ]
+        },
+        {
+          "match": "\\b(throws)\\b",
+          "name": "keyword.other.throws.xtend"
+        }
+      ]
+    },
+    "keyword-operator": {
+      "patterns": [
+        {
+          "match": "\\b(as)\\b",
+          "name": "keyword.operator.as.xtend"
+        },
+        {
+          "match": "\\b(in)\\b",
+          "name": "keyword.operator.in.xtend"
+        },
+        {
+          "match": "\\?\\:",
+          "name": "keyword.operator.elvis.xtend"
+        },
+        {
+          "match": "\\*\\:",
+          "name": "keyword.operator.spreadmap.xtend"
+        },
+        {
+          "match": "\\.\\.",
+          "name": "keyword.operator.range.xtend"
+        },
+        {
+          "match": "\\|",
+          "name": "keyword.operator.arrow.xtend"
+        },
+        {
+          "match": "<<",
+          "name": "keyword.operator.leftshift.xtend"
+        },
+        {
+          "match": "(?<=\\S)\\.(?=\\S)",
+          "name": "keyword.operator.navigation.xtend"
+        },
+        {
+          "match": "(?<=\\S)\\?\\.(?=\\S)",
+          "name": "keyword.operator.safe-navigation.xtend"
+        },
+        {
+          "begin": "\\?",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.operator.ternary.xtend"
+            }
+          },
+          "end": "(?=$|\\)|}|])",
+          "name": "meta.evaluation.ternary.xtend",
+          "patterns": [
+            {
+              "match": ":",
+              "name": "keyword.operator.ternary.expression-seperator.xtend"
+            },
+            {
+              "include": "#xtend-code-minus-map-keys"
+            }
+          ]
+        },
+        {
+          "match": "==~",
+          "name": "keyword.operator.match.xtend"
+        },
+        {
+          "match": "=~",
+          "name": "keyword.operator.find.xtend"
+        },
+        {
+          "match": "\\b(instanceof)\\b",
+          "name": "keyword.operator.instanceof.xtend"
+        },
+        {
+          "match": "(===|==|!=|<=|>=|<=>|<>|<|>|<<)",
+          "name": "keyword.operator.comparison.xtend"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment.xtend"
+        },
+        {
+          "match": "(\\-\\-|\\+\\+)",
+          "name": "keyword.operator.increment-decrement.xtend"
+        },
+        {
+          "match": "(\\-|\\+|\\*|\\/|%)",
+          "name": "keyword.operator.arithmetic.xtend"
+        },
+        {
+          "match": "(!|&&|\\|\\|)",
+          "name": "keyword.operator.logical.xtend"
+        }
+      ]
+    },
+    "language-variables": {
+      "patterns": [
+        {
+          "match": "\\b(this|super)\\b",
+          "name": "variable.language.xtend"
+        }
+      ]
+    },
+    "map-keys": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "constant.other.key.xtend"
+            },
+            "2": {
+              "name": "punctuation.definition.seperator.key-value.xtend"
+            }
+          },
+          "match": "(\\w+)\\s*(:)"
+        }
+      ]
+    },
+    "method-call": {
+      "begin": "([\\w$]+)(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "meta.method.xtend"
+        },
+        "2": {
+          "name": "punctuation.definition.method-parameters.begin.xtend"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.method-parameters.end.xtend"
+        }
+      },
+      "name": "meta.method-call.xtend",
+      "patterns": [
+        {
+          "match": ",",
+          "name": "punctuation.definition.seperator.parameter.xtend"
+        },
+        {
+          "include": "#xtend-code"
+        }
+      ]
+    },
+    "method-content": {
+      "patterns": [
+        {
+          "match": "\\s"
+        },
+        {
+          "include": "#annotations"
+        },
+        {
+          "begin": "(?=(?:\\w|<)[^\\(]*\\s+(?:[\\w$]|<)+\\s*\\()",
+          "end": "(?=[\\w$]+\\s*\\()",
+          "name": "meta.method.return-type.java",
+          "patterns": [
+            {
+              "include": "#storage-modifiers"
+            },
+            {
+              "include": "#types"
+            }
+          ]
+        },
+        {
+          "begin": "([\\w$]+)\\s*\\(",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.function.java"
+            }
+          },
+          "end": "\\)",
+          "name": "meta.definition.method.signature.java",
+          "patterns": [
+            {
+              "begin": "(?=[^)])",
+              "end": "(?=\\))",
+              "name": "meta.method.parameters.xtend",
+              "patterns": [
+                {
+                  "begin": "(?=[^,)])",
+                  "end": "(?=,|\\))",
+                  "name": "meta.method.parameter.xtend",
+                  "patterns": [
+                    {
+                      "match": ",",
+                      "name": "punctuation.definition.separator.xtend"
+                    },
+                    {
+                      "begin": "=",
+                      "beginCaptures": {
+                        "0": {
+                          "name": "keyword.operator.assignment.xtend"
+                        }
+                      },
+                      "end": "(?=,|\\))",
+                      "name": "meta.parameter.default.xtend",
+                      "patterns": [
+                        {
+                          "include": "#xtend-code"
+                        }
+                      ]
+                    },
+                    {
+                      "include": "#parameters"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(?=<)",
+          "end": "(?=\\s)",
+          "name": "meta.method.paramerised-type.xtend",
+          "patterns": [
+            {
+              "begin": "<",
+              "end": ">",
+              "name": "storage.type.parameters.xtend",
+              "patterns": [
+                {
+                  "include": "#types"
+                },
+                {
+                  "match": ",",
+                  "name": "punctuation.definition.seperator.xtend"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "throws",
+          "beginCaptures": {
+            "0": {
+              "name": "storage.modifier.xtend"
+            }
+          },
+          "end": "(?={|;)|^(?=\\s*(?:[^{\\s]|$))",
+          "name": "meta.throwables.xtend",
+          "patterns": [
+            {
+              "include": "#object-types"
+            }
+          ]
+        },
+        {
+          "begin": "{",
+          "end": "(?=})",
+          "name": "meta.method.body.java",
+          "patterns": [
+            {
+              "include": "#xtend-code"
+            }
+          ]
+        }
+      ]
+    },
+    "nest_curly": {
+      "begin": "\\{",
+      "captures": {
+        "0": {
+          "name": "punctuation.section.scope.xtend"
+        }
+      },
+      "end": "\\}",
+      "patterns": [
+        {
+          "include": "#nest_curly"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b",
+          "name": "constant.numeric.xtend"
+        }
+      ]
+    },
+    "object-types": {
+      "patterns": [
+        {
+          "begin": "\\b((?:[a-z]\\w*\\.)*(?:[A-Z]+\\w*[a-z]+\\w*|UR[LI]))<",
+          "end": ">|[^\\w\\s,\\?<\\[\\]]",
+          "name": "storage.type.generic.xtend",
+          "patterns": [
+            {
+              "include": "#object-types"
+            },
+            {
+              "begin": "<",
+              "comment": "This is just to support <>'s with no actual type prefix",
+              "end": ">|[^\\w\\s,\\[\\]<]",
+              "name": "storage.type.generic.xtend"
+            }
+          ]
+        },
+        {
+          "begin": "\\b((?:[a-z]\\w*\\.)*[A-Z]+\\w*[a-z]+\\w*)(?=\\[)",
+          "end": "(?=[^\\]\\s])",
+          "name": "storage.type.object.array.xtend",
+          "patterns": [
+            {
+              "begin": "\\[",
+              "end": "\\]",
+              "patterns": [
+                {
+                  "include": "#xtend"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "match": "\\b(?:[a-zA-Z]\\w*\\.)*(?:[A-Z]+\\w*[a-z]+\\w*|UR[LI])\\b",
+          "name": "storage.type.xtend"
+        }
+      ]
+    },
+    "object-types-inherited": {
+      "patterns": [
+        {
+          "begin": "\\b((?:[a-zA-Z]\\w*\\.)*[A-Z]+\\w*[a-z]+\\w*)<",
+          "end": ">|[^\\w\\s,\\?<\\[\\]]",
+          "name": "entity.other.inherited-class.xtend",
+          "patterns": [
+            {
+              "include": "#object-types-inherited"
+            },
+            {
+              "begin": "<",
+              "comment": "This is just to support <>'s with no actual type prefix",
+              "end": ">|[^\\w\\s,\\[\\]<]",
+              "name": "storage.type.generic.xtend"
+            }
+          ]
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "keyword.operator.dereference.xtend"
+            }
+          },
+          "match": "\\b(?:[a-zA-Z]\\w*(\\.))*[A-Z]+\\w*[a-z]+\\w*\\b",
+          "name": "entity.other.inherited-class.xtend"
+        }
+      ]
+    },
+    "parameters": {
+      "patterns": [
+        {
+          "include": "#annotations"
+        },
+        {
+          "include": "#storage-modifiers"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "match": "\\w+",
+          "name": "variable.parameter.method.xtend"
+        }
+      ]
+    },
+    "parens": {
+      "begin": "\\(",
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#xtend-code"
+        }
+      ]
+    },
+    "primitive-arrays": {
+      "patterns": [
+        {
+          "match": "\\b(?:void|boolean|byte|char|short|int|float|long|double)(\\[\\])*\\b",
+          "name": "storage.type.primitive.array.xtend"
+        }
+      ]
+    },
+    "primitive-types": {
+      "patterns": [
+        {
+          "match": "\\b(?:void|boolean|byte|char|short|int|float|long|double)\\b",
+          "name": "storage.type.primitive.xtend"
+        }
+      ]
+    },
+    "regexp": {
+      "patterns": [
+        {
+          "begin": "/(?=[^/]+/([^>]|$))",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.regexp.begin.xtend"
+            }
+          },
+          "end": "/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.regexp.end.xtend"
+            }
+          },
+          "name": "string.regexp.xtend",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escape.xtend"
+            }
+          ]
+        },
+        {
+          "begin": "~\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.regexp.begin.xtend"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.regexp.end.xtend"
+            }
+          },
+          "name": "string.regexp.compiled.xtend",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escape.xtend"
+            }
+          ]
+        }
+      ]
+    },
+    "storage-modifiers": {
+      "patterns": [
+        {
+          "match": "\\b(private|protected|public)\\b",
+          "name": "storage.modifier.access-control.xtend"
+        },
+        {
+          "match": "\\b(static)\\b",
+          "name": "storage.modifier.static.xtend"
+        },
+        {
+          "match": "\\b(final)\\b",
+          "name": "storage.modifier.final.xtend"
+        },
+        {
+          "match": "\\b(native|synchronized|abstract|threadsafe|transient)\\b",
+          "name": "storage.modifier.other.xtend"
+        }
+      ]
+    },
+    "string-quoted-double": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xtend"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xtend"
+        }
+      },
+      "name": "string.quoted.double.xtend",
+      "patterns": [
+        {
+          "include": "#string-quoted-double-contents"
+        }
+      ]
+    },
+    "string-quoted-double-multiline": {
+      "begin": "\"\"\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xtend"
+        }
+      },
+      "end": "\"\"\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xtend"
+        }
+      },
+      "name": "string.quoted.double.multiline.xtend",
+      "patterns": [
+        {
+          "include": "#string-quoted-double-contents"
+        }
+      ]
+    },
+    "string-quoted-single": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xtend"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xtend"
+        }
+      },
+      "name": "string.quoted.single.xtend",
+      "patterns": [
+        {
+          "include": "#string-quoted-single-contents"
+        }
+      ]
+    },
+    "string-quoted-single-contents": {
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.xtend"
+        },
+        {
+          "applyEndPatternLast": 1,
+          "begin": "\\«\\w",
+          "end": "(?=»\\W)",
+          "name": "variable.other.interpolated.xtend",
+          "patterns": [
+            {
+              "include": "#method-call"
+            },
+            {
+              "match": "\\w",
+              "name": "source.xtend.embedded.source"
+            },
+            {
+              "match": "\\.",
+              "name": "keyword.other.dereference.xtend"
+            }
+          ]
+        },
+        {
+          "begin": "\\«\\w",
+          "name": "source.xtend.embedded.source",
+          "end": "\\»",
+          "patterns": [
+            {
+              "include": "#nest_curly"
+            }
+          ]
+        }
+      ]
+    },
+    "string-quoted-single-multiline": {
+      "begin": "'''",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.xtend"
+        }
+      },
+      "end": "'''",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.xtend"
+        }
+      },
+      "name": "string.quoted.single.multiline.xtend",
+      "patterns": [
+        {
+          "include": "#string-quoted-single-contents"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "include": "#string-quoted-double-multiline"
+        },
+        {
+          "include": "#string-quoted-single-multiline"
+        },
+        {
+          "include": "#string-quoted-double"
+        },
+        {
+          "include": "#string-quoted-single"
+        },
+        {
+          "include": "#regexp"
+        }
+      ]
+    },
+    "structures": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.structure.begin.xtend"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.structure.end.xtend"
+        }
+      },
+      "name": "meta.structure.xtend",
+      "patterns": [
+        {
+          "include": "#xtend-code"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.definition.separator.xtend"
+        }
+      ]
+    },
+    "support-functions": {
+      "patterns": [
+        {
+          "match": "(?x)\\b(?:sprintf|print(?:f|ln)?)\\b",
+          "name": "support.function.print.xtend"
+        },
+        {
+          "match": "(?x)\\b(?:shouldFail|fail(?:NotEquals)?|ass(?:ume|ert(?:S(?:cript|ame)|N(?:ot(?:Same|\n\t\t\t\t\tNull)|ull)|Contains|T(?:hat|oString|rue)|Inspect|Equals|False|Length|\n\t\t\t\t\tArrayEquals)))\\b",
+          "name": "support.function.testing.xtend"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "match": "\\b(def)\\b",
+          "name": "storage.type.def.xtend"
+        },
+        {
+          "include": "#primitive-types"
+        },
+        {
+          "include": "#primitive-arrays"
+        },
+        {
+          "include": "#object-types"
+        }
+      ]
+    },
+    "values": {
+      "patterns": [
+        {
+          "include": "#language-variables"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#constants"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#structures"
+        },
+        {
+          "include": "#method-call"
+        }
+      ]
+    },
+    "variables": {
+      "applyEndPatternLast": 1,
+      "patterns": [
+        {
+          "begin": "(?x:(?=(?:(?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final)|(?:def)|(?:void|boolean|byte|char|short|int|float|long|double)|(?:(?:[a-z]\\w*\\.)*[A-Z]+\\w*))\\s+[\\w\\d_<>\\[\\],\\s]+(?:=|$)\t\t\t))",
+          "end": ";|$",
+          "name": "meta.definition.variable.xtend",
+          "patterns": [
+            {
+              "match": "\\s"
+            },
+            {
+              "captures": {
+                "1": {
+                  "name": "constant.variable.xtend"
+                }
+              },
+              "match": "([A-Z_0-9]+)\\s+(?=\\=)"
+            },
+            {
+              "captures": {
+                "1": {
+                  "name": "meta.definition.variable.name.xtend"
+                }
+              },
+              "match": "(\\w[^\\s,]*)\\s+(?=\\=)"
+            },
+            {
+              "begin": "=",
+              "beginCaptures": {
+                "0": {
+                  "name": "keyword.operator.assignment.xtend"
+                }
+              },
+              "end": "$",
+              "patterns": [
+                {
+                  "include": "#xtend-code"
+                }
+              ]
+            },
+            {
+              "captures": {
+                "1": {
+                  "name": "meta.definition.variable.name.xtend"
+                }
+              },
+              "match": "(\\w[^\\s=]*)(?=\\s*($|;))"
+            },
+            {
+              "include": "#xtend-code"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.xtend"
+}
