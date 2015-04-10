@@ -1,0 +1,104 @@
+{
+  ".source.xtend": {
+    "#!/usr/bin/env xtend -w": {
+      "prefix": "#!",
+      "body": "#!/usr/bin/env xtend -w\n\n"
+    },
+    "replace(dir: …, includes: …, token: …, value: …)": {
+      "prefix": "replace",
+      "body": "replace(dir:\"${1:dirName}\", includes:\"${2:*.*}\", token:\"${3:tokenName}\", value:\"\\${${4:value}}\")$0"
+    },
+    "Doc Block": {
+      "prefix": "doc",
+      "body": "/**\n * $0\n */"
+    },
+    "constructor() { … }": {
+      "prefix": "con",
+      "body": "${1:private}${1/(.+)/(?1: )/}$1(${3:args}) {\n\t$0\n}"
+    },
+    "key: \"value\" (Hash Pair)": {
+      "prefix": ":",
+      "body": "${1:key}: ${2:\"${3:value}\"}"
+    },
+    "closure = { … } ": {
+      "prefix": "cv",
+      "body": "var ${1:closureName} = [ ${2:args} |\n\t$0\n]"
+    },
+    "def": {
+      "prefix": "d",
+      "body": "def "
+    },
+    "for(… in …) { … }": {
+      "prefix": "forin",
+      "body": "for (${1:element} in ${2:collection}) {\n\t$0\n}"
+    },
+    "print": {
+      "prefix": "p",
+      "body": "print $0"
+    },
+    "println ": {
+      "prefix": "pl",
+      "body": "println $0"
+    },
+    "static main() { … }": {
+      "prefix": "main",
+      "body": "static main(args) {\n\t$0\n}"
+    },
+    "to Array": {
+      "prefix": "to",
+      "body": "toArray()"
+    },
+    "to BigDecimal": {
+      "prefix": "to",
+      "body": "toBigDecimal()"
+    },
+    "to BigInteger": {
+      "prefix": "to",
+      "body": "toBigInteger()"
+    },
+    "to Boolean": {
+      "prefix": "to",
+      "body": "toBoolean()"
+    },
+    "to Character": {
+      "prefix": "to",
+      "body": "toCharacter()"
+    },
+    "to Double": {
+      "prefix": "to",
+      "body": "toDouble()"
+    },
+    "to Float": {
+      "prefix": "to",
+      "body": "toFloat()"
+    },
+    "to Integer": {
+      "prefix": "to",
+      "body": "toInteger()"
+    },
+    "to List": {
+      "prefix": "to",
+      "body": "toList()"
+    },
+    "to String": {
+      "prefix": "to",
+      "body": "toString()"
+    },
+    "to URI": {
+      "prefix": "to",
+      "body": "toURI()"
+    },
+    "to URL": {
+      "prefix": "to",
+      "body": "toURL()"
+    },
+    "val": {
+      "prefix": "vl",
+      "body": "${1:val} ${2:var}${3: = ${0:null}}"
+    },
+    "<<": {
+      "prefix": "<<",
+      "body": "«${0:null}»"
+    }
+  }
+}
