@@ -1,6 +1,6 @@
 {
   "name": "language-xtend",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "private": true,
   "description": "Xtend language support in Atom",
   "repository": "https://github.com/nosovae-dev/language-xtend",
