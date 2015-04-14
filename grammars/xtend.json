@@ -31,7 +31,7 @@
       "name": "meta.package.xtend"
     },
     {
-      "begin": "(import static)\\b\\s*",
+      "begin": "(import static extension?)\\b\\s*",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.import.static.xtend"
@@ -723,7 +723,7 @@
     "language-variables": {
       "patterns": [
         {
-          "match": "\\b(this|super)\\b",
+          "match": "\\b(this|super|override)\\b",
           "name": "variable.language.xtend"
         }
       ]
@@ -920,10 +920,14 @@
               "include": "#object-types"
             },
             {
-              "begin": "<",
-              "comment": "This is just to support <>'s with no actual type prefix",
-              "end": ">|[^\\w\\s,\\[\\]<]",
-              "name": "storage.type.generic.xtend"
+              "begin": "\\b(<)\\s",
+              "end": "(?=\\?)",
+              "name": "entity.xtend"
+            },
+            {
+              "begin": "\\b(extends)\\s",
+              "end": "(?=\\w)",
+              "name": "storage.modifier.other.xtend"
             }
           ]
         },
@@ -1069,7 +1073,7 @@
     "storage-modifiers": {
       "patterns": [
         {
-          "match": "\\b(private|protected|public)\\b",
+          "match": "\\b(private|protected|public|var)\\b",
           "name": "storage.modifier.access-control.xtend"
         },
         {
@@ -1081,7 +1085,7 @@
           "name": "storage.modifier.final.xtend"
         },
         {
-          "match": "\\b(native|synchronized|abstract|threadsafe|transient)\\b",
+          "match": "\\b(native|synchronized|abstract|threadsafe|transient|extension)\\b",
           "name": "storage.modifier.other.xtend"
         }
       ]
